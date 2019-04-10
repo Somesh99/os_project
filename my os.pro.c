@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
+#include<string.h>
 
 int main()
 {   int n;
@@ -13,9 +14,9 @@ int main()
 		printf("\nprocs%d\t",(i+1));
 		scanf("%d",&burst_t[i]);
 		scanf("%d",&ariv_t[i]);
-		Proc[i]=i+1;
+		 Proc[i]=i+1;
 	}
-	wait_t[0]=0;
+       wait_t[0]=0;
     for(j=0;j<n;j++)
 	{
 	  wait_t[j+1]=wait_t[j]+burst_t[j];	
