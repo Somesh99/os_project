@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<conio.h>
 #include<time.h>
+#include<process.h>
+#include<String.h>
 int main()
 {   
   int n,bit,but;
