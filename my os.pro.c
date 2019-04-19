@@ -1,14 +1,13 @@
 #include<stdio.h>
 #include<conio.h>
 #include<time.h>
-#include<process.h>
-#include<String.h>
 int main()
 {   
   int n,bit,but;
     printf("Enter No... Of Process :::  ");
     scanf("%d",&n);
-	int i,j,p[n],at[n],bt[n],Prio[n],wt[n],tat[n],min,pos,min1,min2,pos1,min3,tot_wt=0,tot_tat=0;
+	int i,j,p[n],at[n],bt[n],Prio[n],wt[n],tat[n],min,pos,min1,min2,pos1,min3;
+	float tot_wt=0,tot_tat=0;
     bit:
 	printf("\nEnter Burst--Time (In Integer Seconds) :::\n");
 	for(i=0;i<n;i++)
@@ -68,7 +67,7 @@ int main()
     } 
    system("cls");
    printf("\n");
-   system("color 5E");
+   system("color 9E");
    printf("PROCESS\t\tARIVAL_T\tBURST_T\n");
    for(i=0;i<n;i++)
    {
@@ -96,7 +95,7 @@ int main()
         at[pos1]=min2;
         
     }   
-   printf("\n");
+   printf("\n\n\n");
    //system("color 5E");
    printf("PROCESS\t\tARIVAL_T\tBURST_T\n");
    printf(" pr %d\t\t %d\t\t %d",p[0],at[0],bt[0]);
@@ -108,24 +107,32 @@ int main()
    	
    }
     wt[0]=0;
-    for(i=0;i<n-1;i++)
+    for(i=1;i<n;i++)
     {
-    	wt[i+1]=wt[i]+bt[i+1];
-    	tot_wt=tot_wt+wt[i];
-	}
-	for(i=0;i<n;i++)
-	{
-		tat[i]=bt[i]+wt[i]; 
-    	tot_tat=tot_tat+tat[i];
-	}
-    printf("\n");
+        wt[i]=wt[i-1]+bt[i-1];
+        tot_wt=tot_wt+wt[i];
+    }  
+
+    for(i=0;i<n;i++)
+    {
+      tat[i]=bt[i]+wt[i];  
+      tot_tat+=tat[i];
+    } 
+	sleep(10);
+	system("cls");
+	system("color 4E");
+    printf("\n\n\n");
     printf("PROCESS\t\tARIVAL_T\tBURST_T\t\t TURNAR_T\t\t WAITING_T\n");
     for(i=0;i<n;i++)
     {
       printf(" Pr %d\t\t %d\t\t %d\t\t  %d\t\t\t  %d\t\t",p[i],at[i],bt[i],tat[i],wt[i]);
    	  printf("\n");	
 	}
+    printf("\n\nAVG_WAITING_TIME IS :: \t%f",tot_wt/n);
+    printf("\n\nAVG_TURNAR_TIME IS :: \t%f",tot_tat/n);
+  
+}
 
     
   
-}
+
